@@ -1,5 +1,5 @@
 from flask import Flask
-from extensions import db
+from extensions import db, migrate
 from books import books_bp
 from dotenv import load_dotenv
 
@@ -17,6 +17,7 @@ def create_app():
 
     # initialize extensions
     db.init_app(app)
+    migrate.init_app(app, db)
     
     with app.app_context():
         db.create_all()
