@@ -6,6 +6,8 @@ from extensions import db
 
 class Books(db.Model):
     """Books ORM"""
+    
+    __tablename__ = 'books'
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(64))
