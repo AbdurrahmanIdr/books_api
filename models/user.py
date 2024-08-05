@@ -7,9 +7,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(db.Model):
     __tablename__ = 'users'
     
-    id: Mapped[str] = mapped_column(primary_key=True, default=str(uuid4()))
-    username: Mapped[str] = mapped_column(nullable=False)
-    email: Mapped[str] = mapped_column(nullable=False)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(nullable=False, unique=True)
+    email: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
 
     def set_password(self, password):
@@ -21,6 +21,10 @@ class User(db.Model):
     @classmethod
     def get_user_by_username(cls, username):
         return cls.query.filter_by(username=username).first()
+
+    @classmethod
+    def check_email_exists(cls, email):
+        return cls.query.filter_by(email=email).first() is not None
 
     def save_to_database(self):
         db.session.add(self)
