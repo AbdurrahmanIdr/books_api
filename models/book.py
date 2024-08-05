@@ -1,4 +1,4 @@
-# models for books api
+# models for books
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, BOOLEAN
 from extensions import db
