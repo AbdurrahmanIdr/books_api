@@ -3,6 +3,7 @@
 ## Overview
 
 The Books API is a RESTful API built with Flask and SQLAlchemy that allows users to perform CRUD (Create, Read, Update, Delete) operations on a collection of books. This project demonstrates the use of Flask for backend development, SQLAlchemy for ORM, and various RESTful principles for API design.
+Flask JWT Extended is implemented to protect endpoints and routes from unauthorized access and permission. 
 
 ## Features
 
@@ -11,6 +12,12 @@ The Books API is a RESTful API built with Flask and SQLAlchemy that allows users
 - **Retrieve a Single Book**: Get details of a specific book by its ID.
 - **Update a Book**: Modify the details of an existing book.
 - **Delete a Book**: Remove a book from the collection.
+- **Create a User**: Add a new user that can log in to the system.
+- **Retrieve All Users**: Get the list of all users in the db.
+- **User Login**: Route responsible for handling user login and generating access and refresh token.
+- **Refresh Token**: regenerate access token when it has expired.
+- **Whoami**: Retrieve all the users details saved on the db.
+- **Logout**: Log user out and revoke the access and refresh token.
 
 ## Requirements
 
@@ -18,6 +25,8 @@ The Books API is a RESTful API built with Flask and SQLAlchemy that allows users
 - Flask
 - Flask-SQLAlchemy
 - Gunicorn
+- Flask-JWT-Extended
+- SQLAlchemy
 
 ## Installation
 
@@ -78,6 +87,10 @@ The Books API is a RESTful API built with Flask and SQLAlchemy that allows users
    - **GET /books/<id>**: Retrieve a book by its ID.
    - **PUT /books/<id>**: Update a book by its ID. Requires a JSON payload with `name`, `type`, and `available` fields.
    - **DELETE /books/<id>**: Delete a book by its ID.
+   - **POST /auth/login**: User login.
+   - **GET /auth/refresh**: Get a new access token.
+   - **GET /auth/whoami**: Get User details.
+   - **GET /auth/logout**: Logout user and revoke access.
 
 ## Example Requests
 
