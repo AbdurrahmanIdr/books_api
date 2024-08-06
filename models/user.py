@@ -34,5 +34,13 @@ class User(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'password': self.password,
+        }
+
     def __repr__(self):
         return f'<User {self.username}>'
