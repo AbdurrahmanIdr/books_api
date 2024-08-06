@@ -18,7 +18,9 @@ def create_app():
 
     app.config.from_prefixed_env()
     app.config['SECRET_KEY'] = token_urlsafe(32)
-    app.config['JWT_SECRET_KEY'] = token_urlsafe(32)
+    s_key = token_urlsafe(32)
+    app.config['JWT_SECRET_KEY'] = s_key
+    print(s_key)
 
     # initialize extensions
     db.init_app(app)
@@ -49,7 +51,7 @@ def create_app():
         }), 401
 
     @jwt.unauthorized_loader
-    def unauthorized_callback(error):
+    def missing_token_callback(error):
         return jsonify({
             "message": "Request does not contain valid token",
             "error": "Unauthorized"
